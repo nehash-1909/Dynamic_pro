@@ -1,0 +1,43 @@
+int Solution::longestSubsequenceLength(const vector<int> &A) {
+    int n1=A.size();
+    if(n1==0)
+    return 0;
+    if(n1==1)
+    return A[0];
+      int p1[n1+1];
+      p1[0]=1;
+      //p1[1]=1;
+    for(int i=1;i<=n1;i++)
+    {
+        p1[i]=1;
+        for(int j=0;j<=i;j++)
+    {
+        if(A[j]<A[i])
+        {
+            p1[i]=max(p1[i],p1[j]+1);
+        }
+    }    
+    }
+    
+          int p2[n1+1];
+      p2[n1-1]=1;
+
+    for(int i=n1-2;i>=0;i--)
+    {
+        p2[i]=1;
+        for(int j=n1-1;j>=i;j--)
+    {
+        if(A[j]<A[i])
+        {
+            p2[i]=max(p2[i],p2[j]+1);
+        }
+    }    
+    }
+int m=INT_MIN;
+                for(int j=0;j<n1;j++)
+    {
+     m=max(p1[j]+p2[j],m);
+    } 
+ 
+    return m-1;
+}
