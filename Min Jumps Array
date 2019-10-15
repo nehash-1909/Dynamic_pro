@@ -1,0 +1,24 @@
+int Solution::jump(vector<int> &A) {
+    int n=(int)A.size();
+ 
+    if(A[0]==0&&n==1)
+    return 0;
+    if(A[0]==0)
+    return -1;
+
+    int stp=A[0],jump=0,c=1;
+    for(int i=1;i<n-1;i++)
+    {
+        jump=max(jump,A[i]+i);
+        stp--;
+        if(stp==0)
+        {
+            c++;
+            if(i>=jump)
+            return -1;
+            stp=jump-i;
+        }
+    }
+    return c;
+    
+}
