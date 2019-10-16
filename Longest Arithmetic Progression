@@ -1,0 +1,27 @@
+int Solution::solve(const vector<int> &A) {
+    unordered_map<int,int> m;
+    unordered_map<int,int>::iterator itr;
+    int q;
+    int n=(int)A.size();
+
+    for(int i=0;i<n-1;i++)
+    {
+            for(int j=i+1;j<n;j++)
+    {
+        q=A[j]-A[i];
+     m[q]++;
+    // cout<<q<<" ";
+    }        
+    //cout<<"\n";
+    }
+    int mi=INT_MIN;
+    for(itr=m.begin();itr!=m.end();++itr)
+    {
+        int x=itr->second;
+        mi=max(mi,x);
+    }
+    if(mi==INT_MIN)
+    return 1;
+    
+    return mi+1;
+}
