@@ -1,0 +1,37 @@
+typedef long long ll;
+const ll mod = 1000000007;
+int val(int n,int sum,vector<vector<int > > &p)
+{
+    if(n==0)
+    return sum==0;
+    
+    if(p[n][sum]!=-1)
+    return p[n][sum];
+    
+    int ans=0;
+    for(int i=0;i<=9;i++)
+    if(sum-i>=0)
+    {
+        ans=(ans+val(n-1,sum-i,p))%mod;
+    }
+    return p[n][sum]=ans;
+    
+}
+
+
+int Solution::solve(int A, int B) {
+    vector<vector<int> > p;
+    p.resize(A+1);
+    for(int i = 0; i < A+1; i++) {
+        p[i].resize(B+1);
+        for(int j = 0; j < B+1; j++)
+              p[i][j] = -1;
+    }
+int ans=0;
+    for(int i=1;i<=9;i++)
+    if(B-i>=0)
+    {
+        ans=(ans+val(A-1,B-i,p))%mod;
+    }
+    return ans;
+}
